@@ -1,0 +1,9 @@
+word = 'test'
+if len(word) % 2 == 0:
+    mid = len(word) // 2
+    result = word[mid-1:mid+1]
+else:
+    mid = len(word) // 2
+    result = word[mid]
+
+print(result)
