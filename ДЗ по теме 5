@@ -1,0 +1,24 @@
+import json
+
+# Задание 1: Перевод purchase_log.txt в словарь purchases
+purchases = {}
+
+with open('purchase_log.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        try:
+            data = json.loads(line.strip())
+            user_id = data.get('user_id')
+            category = data.get('category')
+
+            if user_id != 'user_id' and user_id is not None and category is not None:
+                purchases[user_id] = category
+        except json.JSONDecodeError:
+            print(f"Ошибка декодирования JSON: {line}") # Обработка ошибок JSON
+
+# Вывод первых двух элементов словаря
+count = 0
+for user_id, category in purchases.items():
+    print(f"{user_id} '{category}'")
+    count += 1
+    if count == 2:
+        break
