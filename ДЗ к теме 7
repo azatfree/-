@@ -1,0 +1,21 @@
+import datetime
+
+# Форматы дат для каждой газеты
+moscow_times_format = '%A, %B %d, %Y'
+guardian_format = '%A, %d.%m.%y'
+daily_news_format = '%A, %d %B %Y'
+
+# Даты из задания
+moscow_times_date_str = 'Wednesday, October 2, 2002'
+guardian_date_str = 'Friday, 11.10.13'
+daily_news_date_str = 'Thursday, 18 August 1977'
+
+# Преобразование строк в объекты datetime
+moscow_times_date = datetime.datetime.strptime(moscow_times_date_str, moscow_times_format)
+guardian_date = datetime.datetime.strptime(guardian_date_str, guardian_format)
+daily_news_date = datetime.datetime.strptime(daily_news_date_str, daily_news_format)
+
+# Вывод результатов
+print(f"The Moscow Times: {moscow_times_date}")
+print(f"The Guardian: {guardian_date}")
+print(f"Daily News: {daily_news_date}")
