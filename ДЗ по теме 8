@@ -1,0 +1,18 @@
+import requests
+
+def get_currency_with_max_rate():
+    # Запрашиваем данные о курсах валют
+    response = requests.get('https://www.cbr-xml-daily.ru/daily_json.js')
+    data = response.json()
+    
+    # Получаем словарь с валютами
+    currencies = data['Valute']
+    
+    # Находим валюту с максимальным значением курса
+    max_rate_currency = max(currencies.values(), key=lambda x: x['Value'])
+    
+    return max_rate_currency['Name']
+
+# Вызываем функцию и выводим результат
+currency_name = get_currency_with_max_rate()
+print(f"Валюта с максимальным курсом: {currency_name}")
