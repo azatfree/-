@@ -1,0 +1,28 @@
+import re
+
+def check_car_number(car_id: str):
+    # Допустимые буквы (кириллица), используемые в номерах
+    valid_letters = set('АВЕКМНОРСТУХ')
+    
+    # Регулярное выражение для формата:
+    # 1 буква, 3 цифры, 2 буквы, 2 или 3 цифры
+    pattern = r'^([АВЕКМНОРСТУХ])(\d{3})([АВЕКМНОРСТУХ]{2})(\d{2,3})$'
+    
+    match = re.match(pattern, car_id)
+    if not match:
+        return "Номер не валиден."
+    
+    # Извлечь группы
+    letter1, digits3, letters2, region = match.groups()
+    
+    # Дополнительная проверка букв (хотя регулярка уже ограничивает)
+    if (letter1 not in valid_letters or
+        any(l not in valid_letters for l in letters2)):
+        return "Номер не валиден."
+    
+    number = letter1 + digits3 + letters2
+    return f"Номер {number} валиден. Регион: {region}."
+
+# Примеры
+print(check_car_number('А222ВС96'))   # валидный
+print(check_car_number('АБ22ВВ193'))  # невалидный
